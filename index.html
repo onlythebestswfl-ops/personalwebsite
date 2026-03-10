@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jack Emery — Builder for Hire</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0a0a0f;
+      --surface: #12121a;
+      --border: #1e1e2e;
+      --accent: #6c63ff;
+      --accent2: #00d9c8;
+      --text: #e8e8f0;
+      --muted: #7a7a95;
+      --card: #14141f;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 2.5rem;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600; font-size: 1rem;
+      color: var(--accent2);
+      letter-spacing: 0.04em;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.875rem;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-cta {
+      background: var(--accent); color: #fff; border: none;
+      padding: 0.55rem 1.2rem; border-radius: 6px;
+      font-size: 0.875rem; font-weight: 600; cursor: pointer;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    .nav-cta:hover { opacity: 0.85; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 8rem 2.5rem 5rem;
+      max-width: 900px; margin: 0 auto;
+      position: relative;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(108,99,255,0.12); border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 999px; padding: 0.4rem 1rem;
+      font-size: 0.8rem; font-weight: 600; color: var(--accent);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 1.8rem;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: #4cff91;
+      box-shadow: 0 0 6px #4cff91;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; } 50% { opacity: 0.4; }
+    }
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 900; line-height: 1.08;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 span { color: var(--accent2); }
+    .hero-sub {
+      font-size: 1.15rem; color: var(--muted); max-width: 580px;
+      margin-bottom: 2.5rem; line-height: 1.75;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--accent); color: #fff;
+      padding: 0.85rem 2rem; border-radius: 8px;
+      font-weight: 700; font-size: 1rem; text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 0 24px rgba(108,99,255,0.35);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 36px rgba(108,99,255,0.55); }
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      padding: 0.85rem 2rem; border-radius: 8px;
+      font-weight: 600; font-size: 1rem; text-decoration: none;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--muted); }
+
+    /* GLOW BG */
+    .hero::before {
+      content: '';
+      position: absolute; top: 20%; left: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(ellipse, rgba(108,99,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* SECTIONS */
+    section { max-width: 900px; margin: 0 auto; padding: 5rem 2.5rem; }
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem; font-weight: 600;
+      color: var(--accent2); letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 0.75rem;
+    }
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-intro { color: var(--muted); max-width: 560px; margin-bottom: 3rem; }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+      align-items: start;
+    }
+    .about-text p { color: var(--muted); margin-bottom: 1rem; line-height: 1.8; }
+    .about-text strong { color: var(--text); }
+    .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.2rem;
+    }
+    .stat-num {
+      font-size: 2rem; font-weight: 900;
+      color: var(--accent); line-height: 1;
+      margin-bottom: 0.3rem;
+    }
+    .stat-label { font-size: 0.8rem; color: var(--muted); }
+
+    /* SKILLS TAGS */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem; }
+    .tag {
+      background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.25);
+      color: var(--accent); border-radius: 6px;
+      padding: 0.35rem 0.8rem; font-size: 0.8rem; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1.2rem;
+    }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 1.5rem;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+    .service-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      opacity: 0; transition: opacity 0.2s;
+    }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+    .service-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
+    .service-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+    /* PROJECTS */
+    .projects-grid { display: grid; gap: 1.5rem; }
+    .project-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 1.8rem;
+      display: grid; grid-template-columns: 1fr auto;
+      gap: 1rem; align-items: start;
+      transition: border-color 0.2s;
+    }
+    .project-card:hover { border-color: rgba(108,99,255,0.5); }
+    .project-type {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 600;
+      color: var(--accent2); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 0.5rem;
+    }
+    .project-card h3 { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+    .project-card p { font-size: 0.875rem; color: var(--muted); line-height: 1.7; }
+    .project-badge {
+      background: rgba(0,217,200,0.1); border: 1px solid rgba(0,217,200,0.3);
+      color: var(--accent2); border-radius: 999px;
+      padding: 0.3rem 0.85rem; font-size: 0.75rem; font-weight: 700;
+      white-space: nowrap;
+    }
+    .project-tech { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .project-tech span {
+      background: rgba(255,255,255,0.04); border: 1px solid var(--border);
+      border-radius: 4px; padding: 0.2rem 0.6rem;
+      font-size: 0.75rem; color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* CONTACT */
+    .contact-box {
+      background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(0,217,200,0.06));
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 16px; padding: 3rem;
+      text-align: center;
+    }
+    .contact-box h2 { margin-bottom: 1rem; }
+    .contact-box p { color: var(--muted); max-width: 480px; margin: 0 auto 2rem; }
+    .contact-email {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem; color: var(--accent2);
+      text-decoration: none; font-weight: 600;
+      border-bottom: 1px solid rgba(0,217,200,0.3);
+      padding-bottom: 2px; transition: border-color 0.2s;
+    }
+    .contact-email:hover { border-color: var(--accent2); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center; padding: 2rem;
+      color: var(--muted); font-size: 0.8rem;
+    }
+
+    @media (max-width: 680px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-links { display: none; }
+      .hero { padding: 7rem 1.2rem 4rem; }
+      section { padding: 4rem 1.2rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .project-card { grid-template-columns: 1fr; }
+      .contact-box { padding: 2rem 1.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="logo">jack.emery</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:fullsendemail@yahoo.com" class="nav-cta">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Available for work — full-time &amp; contract
+  </div>
+  <h1>I build software<br/>that <span>actually ships.</span></h1>
+  <p class="hero-sub">
+    Full-stack developer &amp; builder specializing in AI-powered apps, automation pipelines, SaaS platforms, and custom tooling. Solo, fast, and obsessed with getting things done.
+  </p>
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Let's Work Together</a>
+    <a href="#projects" class="btn-secondary">See My Work</a>
+  </div>
+</div>
+
+<hr class="divider" />
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-label">// about</div>
+  <h2>Builder. Problem-solver.<br/>Ready to go full-send.</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        I'm <strong>Jack Emery</strong> — an independent developer who builds ambitious, multi-featured software products, usually solo, usually fast. I've shipped everything from AI multi-agent dashboards to full SaaS platforms with real users and live deployments.
+      </p>
+      <p>
+        My background isn't traditional. I came up through real-world problem solving — building tools to fill gaps nobody else was filling. That means I'm resourceful, autonomous, and I don't need hand-holding to get from idea to deployment.
+      </p>
+      <p>
+        I'm currently a <strong>free agent</strong> actively looking for a full-time role with a company whose vision I can get behind. I'm also available for contract and freelance work — if you've got a problem and need it solved, I'm your guy.
+      </p>
+      <div class="tags">
+        <span class="tag">JavaScript</span>
+        <span class="tag">React</span>
+        <span class="tag">Node.js</span>
+        <span class="tag">Python</span>
+        <span class="tag">Flask</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">Vercel</span>
+        <span class="tag">Chrome Extensions</span>
+        <span class="tag">AI / LLMs</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Linux / Bash</span>
+        <span class="tag">Git / GitHub</span>
+      </div>
+    </div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">6+</div>
+        <div class="stat-label">Production projects shipped</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">14</div>
+        <div class="stat-label">LLM providers integrated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Solo builds</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Problems I'll attempt</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-label">// services</div>
+  <h2>What I can do for you</h2>
+  <p class="section-intro">Whether you need a full product built or a single problem solved, here's where I can add immediate value.</p>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">🤖</div>
+      <h3>AI Integration &amp; Automation</h3>
+      <p>LLM-powered features, multi-agent systems, prompt engineering, API integration with OpenAI, Grok, Claude, Gemini, and more.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🏗️</div>
+      <h3>Full-Stack Web Apps</h3>
+      <p>React frontends, Flask or Node backends, database design, authentication, and full Vercel/cloud deployment.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🧩</div>
+      <h3>Chrome Extensions</h3>
+      <p>Custom browser tooling, content scripts, background workers, popup UIs, and code obfuscation/licensing systems.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔧</div>
+      <h3>Debugging &amp; Troubleshooting</h3>
+      <p>Stuck on a gnarly bug? I dig in and fix it. Front-end, back-end, or infrastructure — bring me the hard stuff.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <h3>Custom Automation &amp; Scripting</h3>
+      <p>Python and Bash scripts, workflow automation, browser automation via CDP, task scheduling, and data pipelines.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔌</div>
+      <h3>API &amp; Systems Integration</h3>
+      <p>Connecting third-party services, building middleware, webhook handling, and making systems talk to each other.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Dashboards &amp; Admin Panels</h3>
+      <p>Clean, functional data interfaces with real-time updates, charting, filtering, and role-based access.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🗄️</div>
+      <h3>Database Design &amp; Supabase</h3>
+      <p>Schema design, row-level security, Edge Functions, Postgres queries, and Supabase Auth setup.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🌐</div>
+      <h3>Websites &amp; Landing Pages</h3>
+      <p>Professional, responsive web presence built fast. Ideal for small businesses, professionals, and product launches.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎨</div>
+      <h3>Image &amp; Graphic Editing</h3>
+      <p>Asset creation, logo design, SVG work, resizing and formatting for web, print, or social media.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🎬</div>
+      <h3>Video Editing</h3>
+      <p>Basic to intermediate video production, trimming, captioning, formatting for platforms like YouTube, Instagram, and TikTok.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📡</div>
+      <h3>Data Collection &amp; Scraping</h3>
+      <p>Web scraping, structured data extraction, browser automation, and feeding data into spreadsheets or databases.</p>
+    </div>
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// projects</div>
+  <h2>Things I've shipped</h2>
+  <p class="section-intro">Selected work from recent builds. Several products below are available for licensing or purchase — <a href="mailto:fullsendemail@yahoo.com" style="color: var(--accent2);">inquire for pricing</a>.</p>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div>
+        <div class="project-type">SaaS Platform</div>
+        <h3>TravelEase — AI Travel Agency Suite</h3>
+        <p>Dual-app SaaS platform for travel agencies. Includes a full React agency dashboard and a client companion app, with AI-powered features, booking management, and real-time client communication. Live on Vercel.</p>
+        <div class="project-tech">
+          <span>React</span><span>Node.js</span><span>Vercel</span><span>AI / LLM</span>
+        </div>
+      </div>
+      <div class="project-badge">Available for Purchase</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-type">Chrome Extension</div>
+        <h3>Penguin Multi-LLM Dashboard (v3.3)</h3>
+        <p>A fully-featured browser extension with 9 AI agents, 14 LLM providers, autonomous web search, auto-fallback routing, AOL-style multi-user chat, agent-to-agent auto-response, and a full license key + code obfuscation system with 16+ protection layers.</p>
+        <div class="project-tech">
+          <span>JavaScript</span><span>Chrome APIs</span><span>Terser</span><span>14x LLMs</span>
+        </div>
+      </div>
+      <div class="project-badge">Available for Purchase</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-type">Full-Stack App</div>
+        <h3>PoolPro — Pool Service Management</h3>
+        <p>Complete business management platform for Florida pool service companies. Features customer management, GPS route optimization, water chemistry logging, invoicing, analytics, and a Supabase backend with row-level security and Edge Functions.</p>
+        <div class="project-tech">
+          <span>React</span><span>Supabase</span><span>Resend</span><span>Vercel</span>
+        </div>
+      </div>
+      <div class="project-badge">Available for Purchase</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-type">AI Agent / Tooling</div>
+        <h3>DOM Relay Engine</h3>
+        <p>Browser-hosted LLM relay that sends prompts to AI interfaces via CDP WebSocket on port 9222, with an HTTP API on port 7377. Enables headless AI automation from the terminal. Integrates as an OpenClaw skill for autonomous agent use.</p>
+        <div class="project-tech">
+          <span>Node.js</span><span>CDP</span><span>Chromium</span><span>OpenClaw</span>
+        </div>
+      </div>
+      <div class="project-badge">Available for Purchase</div>
+    </div>
+
+    <div class="project-card">
+      <div>
+        <div class="project-type">Professional Web Platform</div>
+        <h3>Navigating The Grey</h3>
+        <p>Professional advocacy platform for a Florida-based healthcare professional. Features event calendar, credentials showcase, mission areas, botanical brand identity, and contact system. Deployed live on Vercel with custom domain.</p>
+        <div class="project-tech">
+          <span>React</span><span>Vercel</span><span>SVG Branding</span>
+        </div>
+      </div>
+      <div class="project-badge">Delivered</div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="divider" />
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-box">
+    <div class="section-label" style="text-align:center; margin-bottom: 1rem;">// let's talk</div>
+    <h2>Ready to build something?</h2>
+    <p>I'm actively looking for a full-time role with a company I believe in, and open to contract work in the meantime. If you've got something worth building, reach out.</p>
+    <div style="display:flex; justify-content:center; gap: 1rem; flex-wrap:wrap; margin-bottom: 2rem;">
+      <a href="mailto:fullsendemail@yahoo.com" class="btn-primary">Send Me an Email</a>
+    </div>
+    <a href="mailto:fullsendemail@yahoo.com" class="contact-email">fullsendemail@yahoo.com</a>
+  </div>
+</section>
+
+<footer>
+  <p>Built by Jack Emery &nbsp;·&nbsp; Available for full-time &amp; contract work &nbsp;·&nbsp; 2026</p>
+</footer>
+
+</body>
+</html>
