@@ -29,23 +29,20 @@
       overflow-x: hidden;
     }
 
-    /* MATRIX CANVAS */
     #matrix-canvas {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
       z-index: 0;
       pointer-events: none;
-      opacity: 0.18;
+      opacity: 0.32;
     }
 
-    /* Everything above matrix */
     nav, .hero, section, footer, hr.divider {
       position: relative;
       z-index: 1;
     }
 
-    /* NAV */
     nav {
       position: fixed; top: 0; left: 0; right: 0; z-index: 100;
       display: flex; justify-content: space-between; align-items: center;
@@ -75,7 +72,6 @@
     }
     .nav-cta:hover { opacity: 0.85; }
 
-    /* HERO */
     .hero {
       min-height: 100vh;
       display: flex; flex-direction: column; justify-content: center;
@@ -137,7 +133,6 @@
       pointer-events: none;
     }
 
-    /* SECTIONS */
     section { max-width: 900px; margin: 0 auto; padding: 5rem 2.5rem; }
     .section-label {
       font-family: 'JetBrains Mono', monospace;
@@ -154,7 +149,6 @@
 
     .divider { border: none; border-top: 1px solid var(--border); position: relative; z-index: 1; }
 
-    /* ABOUT */
     .about-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
       align-items: start;
@@ -181,7 +175,6 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* SERVICES */
     .services-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 1.2rem;
@@ -203,7 +196,6 @@
     .service-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
     .service-card p { font-size: 0.85rem; color: #f3f3f8; line-height: 1.6; }
 
-    /* PROJECTS */
     .projects-grid { display: grid; gap: 1.5rem; }
     .project-card {
       background: var(--card); border: 1px solid var(--border);
@@ -235,7 +227,6 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* CONTACT */
     .contact-box {
       background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(0,217,200,0.06));
       border: 1px solid rgba(108,99,255,0.3);
@@ -276,7 +267,6 @@
 <canvas id="matrix-canvas"></canvas>
 
 <script>
-  // MATRIX RAIN
   const canvas = document.getElementById('matrix-canvas');
   const ctx = canvas.getContext('2d');
   let W, H, cols, drops;
@@ -292,18 +282,17 @@
   }
 
   function draw() {
-    ctx.fillStyle = 'rgba(10,10,15,0.05)';
+    ctx.fillStyle = 'rgba(10,10,15,0.055)';
     ctx.fillRect(0, 0, W, H);
     ctx.font = '14px JetBrains Mono, monospace';
 
     for (let i = 0; i < drops.length; i++) {
       const char = chars[Math.floor(Math.random() * chars.length)];
-      // Lead char brighter
       const y = drops[i] * 14;
-      if (drops[i] * 14 < H * 0.1 || Math.random() > 0.95) {
-        ctx.fillStyle = '#00ffd5';
+      if (Math.random() > 0.95) {
+        ctx.fillStyle = '#afffef';
       } else {
-        ctx.fillStyle = '#00d9c8';
+        ctx.fillStyle = '#00ffd5';
       }
       ctx.fillText(char, i * 14, y);
 
@@ -328,7 +317,6 @@
   <a href="mailto:fullsendemail@yahoo.com" class="nav-cta">Hire Me</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-badge">
     <span class="badge-dot"></span>
@@ -346,17 +334,16 @@
 
 <hr class="divider" />
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-label">// about</div>
   <h2>Builder. Problem-solver.<br/>Ready to go full-send.</h2>
   <div class="about-grid">
     <div class="about-text">
       <p>
-        I'm <strong>Jack Emery</strong> — an independent developer who builds ambitious, multi-featured software products, usually solo, usually fast. I've shipped everything from AI multi-agent dashboards to full SaaS platforms with real users and live deployments.
+        I'm <strong>Jack Emery</strong> — an independent developer with over 300 projects under my belt spanning more than a decade of solo building. From AI multi-agent systems to full SaaS platforms, Chrome extensions to browser automation engines, I've built across virtually every layer of the stack — and I've done it alone, fast, and without a safety net.
       </p>
       <p>
-        My background isn't traditional. I came up through real-world problem solving — building tools to fill gaps nobody else was filling. That means I'm resourceful, autonomous, and I don't need hand-holding to get from idea to deployment.
+        My background isn't traditional. I came up through real-world problem solving — identifying gaps nobody else was filling and building the tools to fill them. That means I'm resourceful, self-directed, and I don't need hand-holding to get from idea to deployment.
       </p>
       <p>
         I'm currently a <strong>free agent</strong> actively looking for a full-time role with a company whose vision I can get behind. I'm also available for contract and freelance work — if you've got a problem and need it solved, I'm your guy.
@@ -380,8 +367,8 @@
     </div>
     <div class="stats-grid">
       <div class="stat-card">
-        <div class="stat-num">8+</div>
-        <div class="stat-label">Production projects shipped</div>
+        <div class="stat-num">300+</div>
+        <div class="stat-label">Projects built & shipped</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">14</div>
@@ -401,7 +388,6 @@
 
 <hr class="divider" />
 
-<!-- SERVICES -->
 <section id="services">
   <div class="section-label">// services</div>
   <h2>What I can do for you</h2>
@@ -472,11 +458,10 @@
 
 <hr class="divider" />
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">// projects</div>
   <h2>Things I've shipped</h2>
-  <p class="section-intro">Selected work from recent builds. Several products below are available for licensing or purchase — <a href="mailto:fullsendemail@yahoo.com" style="color: var(--accent2);">inquire for pricing</a>.</p>
+  <p class="section-intro">Selected work from 300+ builds. Several products below are available for licensing or purchase — <a href="mailto:fullsendemail@yahoo.com" style="color: var(--accent2);">inquire for pricing</a>.</p>
   <div class="projects-grid">
 
     <div class="project-card">
@@ -568,7 +553,6 @@
 
 <hr class="divider" />
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="contact-box">
     <div class="section-label" style="text-align:center; margin-bottom: 1rem;">// let's talk</div>
