@@ -148,7 +148,6 @@
     .section-intro { color: #ededf5; max-width: 560px; margin-bottom: 3rem; }
     .divider { border: none; border-top: 1px solid var(--border); position: relative; z-index: 1; }
 
-    /* ABOUT */
     .about-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
       align-items: start;
@@ -175,7 +174,7 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
-    /* ORIGIN STORY */
+    /* ORIGIN */
     .origin-section {
       max-width: 900px; margin: 0 auto; padding: 5rem 2.5rem;
       position: relative; z-index: 1;
@@ -211,12 +210,8 @@
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 2px;
     }
-    .origin-col.then::before {
-      background: linear-gradient(90deg, #ff8c32, #ff5a1f);
-    }
-    .origin-col.now::before {
-      background: linear-gradient(90deg, var(--accent), var(--accent2));
-    }
+    .origin-col.then::before { background: linear-gradient(90deg, #ff8c32, #ff5a1f); }
+    .origin-col.now::before { background: linear-gradient(90deg, var(--accent), var(--accent2)); }
     .origin-col-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.7rem; font-weight: 600;
@@ -231,9 +226,7 @@
     }
     .origin-col.then .origin-col-title { color: #ffe0c0; }
     .origin-col.now .origin-col-title { color: #e0ddff; }
-    .origin-keywords {
-      display: flex; flex-wrap: wrap; gap: 0.5rem;
-    }
+    .origin-keywords { display: flex; flex-wrap: wrap; gap: 0.5rem; }
     .origin-kw {
       border-radius: 6px;
       padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600;
@@ -247,9 +240,9 @@
       background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.25);
       color: #b4afff;
     }
+    .origin-columns-wrapper { position: relative; }
     .origin-connector {
       display: flex; align-items: center; justify-content: center;
-      font-size: 1.8rem; color: var(--accent2);
       position: absolute; left: 50%; top: 50%;
       transform: translate(-50%, -50%);
       z-index: 2;
@@ -259,9 +252,7 @@
       width: 44px; height: 44px;
       font-family: 'JetBrains Mono', monospace;
       font-size: 1rem; font-weight: 700;
-    }
-    .origin-columns-wrapper {
-      position: relative;
+      color: var(--accent2);
     }
     .origin-pull-quote {
       margin-top: 2rem;
@@ -273,10 +264,7 @@
       line-height: 1.8;
       max-width: 620px;
     }
-    .origin-pull-quote strong {
-      color: var(--text);
-      font-style: normal;
-    }
+    .origin-pull-quote strong { color: var(--text); font-style: normal; }
 
     /* SERVICES */
     .services-grid {
@@ -332,6 +320,65 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
+    /* PROBLEM SECTION */
+    .problem-box {
+      background: linear-gradient(135deg, rgba(0,217,200,0.06), rgba(108,99,255,0.08));
+      border: 1px solid rgba(0,217,200,0.2);
+      border-radius: 16px; padding: 3rem;
+    }
+    .problem-box h2 { margin-bottom: 1rem; }
+    .problem-box .problem-body {
+      color: #d8d8ee; font-size: 1.05rem; line-height: 1.85;
+      max-width: 620px; margin-bottom: 2.5rem;
+    }
+    .problem-body p { margin-bottom: 1rem; }
+    .problem-body p:last-child { margin-bottom: 0; }
+
+    .problem-form { display: grid; gap: 1rem; max-width: 600px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-field { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-field label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem; font-weight: 600;
+      color: var(--accent2); letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .form-field input,
+    .form-field textarea {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+      resize: vertical;
+    }
+    .form-field input:focus,
+    .form-field textarea:focus {
+      border-color: var(--accent2);
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder {
+      color: #5a5a7a;
+    }
+    .form-submit {
+      background: var(--accent2);
+      color: #0a0a0f;
+      border: none;
+      padding: 0.9rem 2rem;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+      align-self: flex-start;
+      letter-spacing: 0.01em;
+    }
+    .form-submit:hover { opacity: 0.88; transform: translateY(-2px); }
+
     /* CONTACT */
     .contact-box {
       background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(0,217,200,0.06));
@@ -368,6 +415,8 @@
       .origin-connector { display: none; }
       .project-card { grid-template-columns: 1fr; }
       .contact-box { padding: 2rem 1.2rem; }
+      .problem-box { padding: 2rem 1.2rem; }
+      .form-row { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -414,12 +463,12 @@
     <li><a href="#origin">Origin</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#projects">Projects</a></li>
+    <li><a href="#problem">Got a Problem?</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a href="mailto:fullsendemail@yahoo.com" class="nav-cta">Hire Me</a>
 </nav>
 
-<!-- HERO -->
 <div class="hero">
   <div class="hero-badge">
     <span class="badge-dot"></span>
@@ -427,17 +476,16 @@
   </div>
   <h1>I build software<br/>that <span>actually ships.</span></h1>
   <p class="hero-sub">
-    Full-stack developer &amp; AI builder with a background in construction. I build tools that solve real problems — not demos, not prototypes. Things that work because they have to.
+    Full-stack developer &amp; AI builder with a background in construction. I build tools that solve real problems. Not demos, not prototypes. Things that work because they have to.
   </p>
   <div class="hero-actions">
-    <a href="#contact" class="btn-primary">Let's Work Together</a>
+    <a href="#problem" class="btn-primary">Tell Me Your Problem</a>
     <a href="#projects" class="btn-secondary">See My Work</a>
   </div>
 </div>
 
 <hr class="divider" />
 
-<!-- ABOUT -->
 <section id="about">
   <div class="section-label">// about</div>
   <h2>Builder. Problem-solver.<br/>Ready to go full-send.</h2>
@@ -450,7 +498,7 @@
         My background isn't traditional. Before software, I owned and operated three residential construction companies across New Hampshire and Florida. I came up identifying gaps nobody else was filling and building the tools to fill them — first with crews and blueprints, then with code.
       </p>
       <p>
-        I'm currently a <strong>free agent</strong> actively looking for a full-time role with a company whose vision I can get behind. I'm also available for contract and freelance work — if you've got a problem and need it solved, I'm your guy.
+        I'm currently a <strong>free agent</strong> actively looking for a full-time role with a company whose vision I can get behind. I'm also available for contract and freelance work. If you've got a problem and need it solved, I'm your guy.
       </p>
       <div class="tags">
         <span class="tag">JavaScript</span>
@@ -492,14 +540,12 @@
 
 <hr class="divider" />
 
-<!-- ORIGIN STORY -->
 <section class="origin-section" id="origin">
   <div class="section-label">// before the code</div>
   <h2 class="origin-headline">From job sites<br/>to <span>codebases.</span></h2>
   <p class="origin-intro">
-    I didn't start in software. I ran construction companies — managed crews, coordinated subcontractors, kept $2–3M projects moving simultaneously. That taught me how to identify what's broken, make fast decisions with incomplete information, and build things that <em>have</em> to work because people are counting on them. That's still how I build software.
+    I didn't start in software. I ran construction companies — managed crews, coordinated subcontractors, kept $2–3M projects moving simultaneously. That taught me how to identify what's broken, make fast decisions with incomplete information, and build things that have to work because people are counting on them. That's still how I build software.
   </p>
-
   <div class="origin-columns-wrapper">
     <div class="origin-columns">
       <div class="origin-col then">
@@ -537,7 +583,6 @@
     </div>
     <div class="origin-connector">→</div>
   </div>
-
   <blockquote class="origin-pull-quote">
     "The skills transfer more than people think. <strong>Running a job site and shipping software both require the same thing</strong> — knowing what actually matters, cutting what doesn't, and getting it done."
   </blockquote>
@@ -545,7 +590,6 @@
 
 <hr class="divider" />
 
-<!-- SERVICES -->
 <section id="services">
   <div class="section-label">// services</div>
   <h2>What I can do for you</h2>
@@ -616,11 +660,10 @@
 
 <hr class="divider" />
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">// projects</div>
   <h2>Things I've shipped</h2>
-  <p class="section-intro">Selected work from 300+ builds. Several products below are available for licensing or purchase — <a href="mailto:fullsendemail@yahoo.com" style="color: var(--accent2);">inquire for pricing</a>.</p>
+  <p class="section-intro">Selected work from 300+ builds. Several products below are available for licensing or purchase. <a href="mailto:fullsendemail@yahoo.com" style="color: var(--accent2);">Inquire for pricing.</a></p>
   <div class="projects-grid">
 
     <div class="project-card">
@@ -663,7 +706,7 @@
       <div>
         <div class="project-type">AI Tooling / Browser Automation</div>
         <h3>GhostAPI — Browser-Backed LLM Bridge</h3>
-        <p>An invisible OpenAI-compatible API layer that haunts a real browser session. GhostAPI connects to an existing Qwen tab via CDP WebSocket, injecting a content script to relay prompts and capture responses — no cloud key required. Exposes a local HTTP API on port 7377, enabling any OpenAI-compatible tool or agent to use a live browser tab as its LLM backend.</p>
+        <p>An invisible OpenAI-compatible API layer that haunts a real browser session. GhostAPI connects to an existing Qwen tab via CDP WebSocket, injecting a content script to relay prompts and capture responses. No cloud key required. Exposes a local HTTP API on port 7377, enabling any OpenAI-compatible tool or agent to use a live browser tab as its LLM backend.</p>
         <div class="project-tech">
           <span>Node.js</span><span>CDP</span><span>Chromium</span><span>OpenClaw</span><span>OpenAI-Compatible</span>
         </div>
@@ -712,12 +755,43 @@
 
 <hr class="divider" />
 
-<!-- CONTACT -->
+<!-- GOT A PROBLEM -->
+<section id="problem">
+  <div class="section-label">// got a problem?</div>
+  <h2>Tell me one thing<br/>that slows you down.</h2>
+  <div class="problem-box">
+    <div class="problem-body">
+      <p>One workflow that's clunky. One task your team does manually that shouldn't be. One system that almost works but not quite.</p>
+      <p>Tell me about it and I'll come back to you personally with two or three concrete ways I can help. Maybe it's a one-time fix. Maybe it's something I build and hand off to you. Maybe you realize you want someone like me around full time. Whatever the case, we start with your problem and go from there.</p>
+      <p>The door's open. No pitch, no pressure.</p>
+    </div>
+    <form class="problem-form" id="problemForm">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="fname">Your Name</label>
+          <input type="text" id="fname" name="name" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-field">
+          <label for="fcontact">Email or Phone</label>
+          <input type="text" id="fcontact" name="contact" placeholder="jane@company.com" required />
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="fmessage">The Headache</label>
+        <textarea id="fmessage" name="message" rows="5" placeholder="Describe the problem, the workflow, the thing that's been bugging you..." required></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send It Over</button>
+    </form>
+  </div>
+</section>
+
+<hr class="divider" />
+
 <section id="contact">
   <div class="contact-box">
     <div class="section-label" style="text-align:center; margin-bottom: 1rem;">// let's talk</div>
     <h2>Ready to build something?</h2>
-    <p>I'm actively looking for a full-time role with a company I believe in, and open to contract work in the meantime. If you've got something worth building, reach out.</p>
+    <p>Prefer to reach out directly? I'm always reachable by email.</p>
     <div style="display:flex; justify-content:center; gap: 1rem; flex-wrap:wrap; margin-bottom: 2rem;">
       <a href="mailto:fullsendemail@yahoo.com" class="btn-primary">Send Me an Email</a>
     </div>
@@ -728,6 +802,18 @@
 <footer>
   <p>Built by Jack Emery &nbsp;·&nbsp; Available for full-time &amp; contract work &nbsp;·&nbsp; 2026</p>
 </footer>
+
+<script>
+  document.getElementById('problemForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('fname').value;
+    const contact = document.getElementById('fcontact').value;
+    const message = document.getElementById('fmessage').value;
+    const body = encodeURIComponent(`Name: ${name}\nContact: ${contact}\n\nThe Headache:\n${message}`);
+    const subject = encodeURIComponent(`New inquiry from ${name} via jackemerywillworkforyou.company`);
+    window.location.href = `mailto:fullsendemail@yahoo.com?subject=${subject}&body=${body}`;
+  });
+</script>
 
 </body>
 </html>
