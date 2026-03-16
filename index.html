@@ -146,9 +146,9 @@
       margin-bottom: 1rem;
     }
     .section-intro { color: #ededf5; max-width: 560px; margin-bottom: 3rem; }
-
     .divider { border: none; border-top: 1px solid var(--border); position: relative; z-index: 1; }
 
+    /* ABOUT */
     .about-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
       align-items: start;
@@ -175,6 +175,110 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
+    /* ORIGIN STORY */
+    .origin-section {
+      max-width: 900px; margin: 0 auto; padding: 5rem 2.5rem;
+      position: relative; z-index: 1;
+    }
+    .origin-headline {
+      font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+      font-weight: 800; letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .origin-headline span { color: var(--accent2); }
+    .origin-intro {
+      color: #d8d8ee; max-width: 620px;
+      font-size: 1.05rem; line-height: 1.85;
+      margin-bottom: 2.8rem;
+    }
+    .origin-columns {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .origin-col {
+      border-radius: 14px; padding: 1.8rem;
+      border: 1px solid var(--border);
+      position: relative; overflow: hidden;
+    }
+    .origin-col.then {
+      background: linear-gradient(135deg, rgba(255,160,50,0.06), rgba(255,100,50,0.04));
+      border-color: rgba(255,140,50,0.25);
+    }
+    .origin-col.now {
+      background: linear-gradient(135deg, rgba(108,99,255,0.08), rgba(0,217,200,0.05));
+      border-color: rgba(108,99,255,0.3);
+    }
+    .origin-col::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    }
+    .origin-col.then::before {
+      background: linear-gradient(90deg, #ff8c32, #ff5a1f);
+    }
+    .origin-col.now::before {
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+    }
+    .origin-col-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      margin-bottom: 1.2rem;
+    }
+    .origin-col.then .origin-col-label { color: #ff9f50; }
+    .origin-col.now .origin-col-label { color: var(--accent2); }
+    .origin-col-title {
+      font-size: 1.1rem; font-weight: 800;
+      margin-bottom: 1rem; line-height: 1.3;
+    }
+    .origin-col.then .origin-col-title { color: #ffe0c0; }
+    .origin-col.now .origin-col-title { color: #e0ddff; }
+    .origin-keywords {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+    }
+    .origin-kw {
+      border-radius: 6px;
+      padding: 0.35rem 0.75rem; font-size: 0.8rem; font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .origin-col.then .origin-kw {
+      background: rgba(255,140,50,0.1); border: 1px solid rgba(255,140,50,0.25);
+      color: #ffb87a;
+    }
+    .origin-col.now .origin-kw {
+      background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.25);
+      color: #b4afff;
+    }
+    .origin-connector {
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.8rem; color: var(--accent2);
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      width: 44px; height: 44px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 1rem; font-weight: 700;
+    }
+    .origin-columns-wrapper {
+      position: relative;
+    }
+    .origin-pull-quote {
+      margin-top: 2rem;
+      border-left: 3px solid var(--accent2);
+      padding-left: 1.5rem;
+      font-size: 1.05rem;
+      color: #c8c8e0;
+      font-style: italic;
+      line-height: 1.8;
+      max-width: 620px;
+    }
+    .origin-pull-quote strong {
+      color: var(--text);
+      font-style: normal;
+    }
+
+    /* SERVICES */
     .services-grid {
       display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
       gap: 1.2rem;
@@ -196,6 +300,7 @@
     .service-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 0.4rem; }
     .service-card p { font-size: 0.85rem; color: #f3f3f8; line-height: 1.6; }
 
+    /* PROJECTS */
     .projects-grid { display: grid; gap: 1.5rem; }
     .project-card {
       background: var(--card); border: 1px solid var(--border);
@@ -227,6 +332,7 @@
       font-family: 'JetBrains Mono', monospace;
     }
 
+    /* CONTACT */
     .contact-box {
       background: linear-gradient(135deg, rgba(108,99,255,0.12), rgba(0,217,200,0.06));
       border: 1px solid rgba(108,99,255,0.3);
@@ -256,7 +362,10 @@
       .nav-links { display: none; }
       .hero { padding: 7rem 1.2rem 4rem; }
       section { padding: 4rem 1.2rem; }
+      .origin-section { padding: 4rem 1.2rem; }
       .about-grid { grid-template-columns: 1fr; }
+      .origin-columns { grid-template-columns: 1fr; }
+      .origin-connector { display: none; }
       .project-card { grid-template-columns: 1fr; }
       .contact-box { padding: 2rem 1.2rem; }
     }
@@ -270,14 +379,12 @@
   const canvas = document.getElementById('matrix-canvas');
   const ctx = canvas.getContext('2d');
   let W, H, cols, drops;
-
   const chars = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン0123456789ABCDEF<>{}[]|/\\';
 
   function init() {
     W = canvas.width = window.innerWidth;
     H = canvas.height = window.innerHeight;
-    const fontSize = 14;
-    cols = Math.floor(W / fontSize);
+    cols = Math.floor(W / 14);
     drops = Array(cols).fill(1);
   }
 
@@ -285,17 +392,11 @@
     ctx.fillStyle = 'rgba(10,10,15,0.055)';
     ctx.fillRect(0, 0, W, H);
     ctx.font = '14px JetBrains Mono, monospace';
-
     for (let i = 0; i < drops.length; i++) {
       const char = chars[Math.floor(Math.random() * chars.length)];
       const y = drops[i] * 14;
-      if (Math.random() > 0.95) {
-        ctx.fillStyle = '#afffef';
-      } else {
-        ctx.fillStyle = '#00ffd5';
-      }
+      ctx.fillStyle = Math.random() > 0.95 ? '#afffef' : '#00ffd5';
       ctx.fillText(char, i * 14, y);
-
       if (y > H && Math.random() > 0.975) drops[i] = 0;
       drops[i]++;
     }
@@ -310,6 +411,7 @@
   <div class="logo">jack.emery</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#origin">Origin</a></li>
     <li><a href="#services">Services</a></li>
     <li><a href="#projects">Projects</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -317,6 +419,7 @@
   <a href="mailto:fullsendemail@yahoo.com" class="nav-cta">Hire Me</a>
 </nav>
 
+<!-- HERO -->
 <div class="hero">
   <div class="hero-badge">
     <span class="badge-dot"></span>
@@ -324,7 +427,7 @@
   </div>
   <h1>I build software<br/>that <span>actually ships.</span></h1>
   <p class="hero-sub">
-    Full-stack developer &amp; builder specializing in AI-powered apps, automation pipelines, SaaS platforms, and custom tooling. Solo, fast, and obsessed with getting things done.
+    Full-stack developer &amp; AI builder with a background in construction. I build tools that solve real problems — not demos, not prototypes. Things that work because they have to.
   </p>
   <div class="hero-actions">
     <a href="#contact" class="btn-primary">Let's Work Together</a>
@@ -334,6 +437,7 @@
 
 <hr class="divider" />
 
+<!-- ABOUT -->
 <section id="about">
   <div class="section-label">// about</div>
   <h2>Builder. Problem-solver.<br/>Ready to go full-send.</h2>
@@ -343,7 +447,7 @@
         I'm <strong>Jack Emery</strong> — an independent developer with over 300 projects under my belt spanning more than a decade of solo building. From AI multi-agent systems to full SaaS platforms, Chrome extensions to browser automation engines, I've built across virtually every layer of the stack — and I've done it alone, fast, and without a safety net.
       </p>
       <p>
-        My background isn't traditional. I came up through real-world problem solving — identifying gaps nobody else was filling and building the tools to fill them. That means I'm resourceful, self-directed, and I don't need hand-holding to get from idea to deployment.
+        My background isn't traditional. Before software, I owned and operated three residential construction companies across New Hampshire and Florida. I came up identifying gaps nobody else was filling and building the tools to fill them — first with crews and blueprints, then with code.
       </p>
       <p>
         I'm currently a <strong>free agent</strong> actively looking for a full-time role with a company whose vision I can get behind. I'm also available for contract and freelance work — if you've got a problem and need it solved, I'm your guy.
@@ -368,15 +472,15 @@
     <div class="stats-grid">
       <div class="stat-card">
         <div class="stat-num">300+</div>
-        <div class="stat-label">Projects built & shipped</div>
+        <div class="stat-label">Projects built &amp; shipped</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">14</div>
         <div class="stat-label">LLM providers integrated</div>
       </div>
       <div class="stat-card">
-        <div class="stat-num">100%</div>
-        <div class="stat-label">Solo builds</div>
+        <div class="stat-num">3</div>
+        <div class="stat-label">Construction companies owned &amp; operated</div>
       </div>
       <div class="stat-card">
         <div class="stat-num">∞</div>
@@ -388,6 +492,60 @@
 
 <hr class="divider" />
 
+<!-- ORIGIN STORY -->
+<section class="origin-section" id="origin">
+  <div class="section-label">// before the code</div>
+  <h2 class="origin-headline">From job sites<br/>to <span>codebases.</span></h2>
+  <p class="origin-intro">
+    I didn't start in software. I ran construction companies — managed crews, coordinated subcontractors, kept $2–3M projects moving simultaneously. That taught me how to identify what's broken, make fast decisions with incomplete information, and build things that <em>have</em> to work because people are counting on them. That's still how I build software.
+  </p>
+
+  <div class="origin-columns-wrapper">
+    <div class="origin-columns">
+      <div class="origin-col then">
+        <div class="origin-col-label">// then</div>
+        <div class="origin-col-title">Field Operations &amp;<br/>Business Ownership</div>
+        <div class="origin-keywords">
+          <span class="origin-kw">Job Sites</span>
+          <span class="origin-kw">Crew Management</span>
+          <span class="origin-kw">Blueprints</span>
+          <span class="origin-kw">Subcontractors</span>
+          <span class="origin-kw">$2–3M Projects</span>
+          <span class="origin-kw">Deadlines</span>
+          <span class="origin-kw">3 Companies</span>
+          <span class="origin-kw">NH + FL</span>
+          <span class="origin-kw">Field Ops</span>
+          <span class="origin-kw">Decision Making</span>
+        </div>
+      </div>
+      <div class="origin-col now">
+        <div class="origin-col-label">// now</div>
+        <div class="origin-col-title">Full-Stack Development<br/>&amp; AI Systems</div>
+        <div class="origin-keywords">
+          <span class="origin-kw">APIs</span>
+          <span class="origin-kw">AI Agents</span>
+          <span class="origin-kw">Deployment</span>
+          <span class="origin-kw">Automation</span>
+          <span class="origin-kw">SaaS Platforms</span>
+          <span class="origin-kw">LLM Integration</span>
+          <span class="origin-kw">React</span>
+          <span class="origin-kw">Node.js</span>
+          <span class="origin-kw">Browser Automation</span>
+          <span class="origin-kw">300+ Projects</span>
+        </div>
+      </div>
+    </div>
+    <div class="origin-connector">→</div>
+  </div>
+
+  <blockquote class="origin-pull-quote">
+    "The skills transfer more than people think. <strong>Running a job site and shipping software both require the same thing</strong> — knowing what actually matters, cutting what doesn't, and getting it done."
+  </blockquote>
+</section>
+
+<hr class="divider" />
+
+<!-- SERVICES -->
 <section id="services">
   <div class="section-label">// services</div>
   <h2>What I can do for you</h2>
@@ -458,6 +616,7 @@
 
 <hr class="divider" />
 
+<!-- PROJECTS -->
 <section id="projects">
   <div class="section-label">// projects</div>
   <h2>Things I've shipped</h2>
@@ -504,7 +663,7 @@
       <div>
         <div class="project-type">AI Tooling / Browser Automation</div>
         <h3>GhostAPI — Browser-Backed LLM Bridge</h3>
-        <p>An invisible OpenAI-compatible API layer that haunts a real browser session. GhostAPI connects to an existing Qwen tab via CDP WebSocket, injecting a content script to relay prompts and capture responses — no cloud key required. Exposes a local HTTP API on port 7377, enabling any OpenAI-compatible tool or agent to use a live browser tab as its LLM backend. Integrates as an OpenClaw skill for fully autonomous agent use.</p>
+        <p>An invisible OpenAI-compatible API layer that haunts a real browser session. GhostAPI connects to an existing Qwen tab via CDP WebSocket, injecting a content script to relay prompts and capture responses — no cloud key required. Exposes a local HTTP API on port 7377, enabling any OpenAI-compatible tool or agent to use a live browser tab as its LLM backend.</p>
         <div class="project-tech">
           <span>Node.js</span><span>CDP</span><span>Chromium</span><span>OpenClaw</span><span>OpenAI-Compatible</span>
         </div>
@@ -528,7 +687,7 @@
       <div>
         <div class="project-type">AI Agent / Tooling</div>
         <h3>BAA — Browser Autonomy Agent (Penguin Edition)</h3>
-        <p>Self-contained browser automation agent built on OpenClaw, running in a Crostini/Linux environment on ChromeOS. Features a custom Penguin Terminal-themed dashboard (IBM Plex Mono, teal/dark scheme, scanline overlay) served via a single-file Python HTTP server combining the agent backend and frontend UI. Designed for autonomous browser task execution from a constrained Chromebook environment.</p>
+        <p>Self-contained browser automation agent built on OpenClaw, running in a Crostini/Linux environment on ChromeOS. Features a custom Penguin Terminal-themed dashboard served via a single-file Python HTTP server combining the agent backend and frontend UI. Designed for autonomous browser task execution from a constrained Chromebook environment.</p>
         <div class="project-tech">
           <span>Python</span><span>OpenClaw</span><span>Linux/Crostini</span><span>HTML/CSS</span><span>Bash</span>
         </div>
@@ -553,6 +712,7 @@
 
 <hr class="divider" />
 
+<!-- CONTACT -->
 <section id="contact">
   <div class="contact-box">
     <div class="section-label" style="text-align:center; margin-bottom: 1rem;">// let's talk</div>
